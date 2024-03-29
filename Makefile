@@ -1,5 +1,10 @@
-CC ?= clang
-Flags ?= -Wall -Werror
+Compiler ?= clang
+CompileFlags ?= -Wall -Werror
 
-compile:
-	$(CC) -o bundle bundle.c $(Flags)
+Linker ?= clang
+
+compile: bundle.o
+	$(Linker) -o bundle bundle.o
+
+%.o: %.c
+	$(Compiler) -c -o bundle.o bundle.c $(CompileFlags)
